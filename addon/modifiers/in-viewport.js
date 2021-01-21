@@ -1,11 +1,11 @@
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { DEBUG } from '@glimmer/env';
+// import { DEBUG } from '@glimmer/env';
 import Modifier from 'ember-modifier';
 import deepEqual from 'fast-deep-equal';
 
-const WATCHED_ELEMENTS = DEBUG ? new WeakSet() : undefined;
+// const WATCHED_ELEMENTS = DEBUG ? new WeakSet() : undefined;
 
 export default class InViewportModifier extends Modifier {
   @service inViewport;
@@ -51,11 +51,11 @@ export default class InViewportModifier extends Modifier {
   }
 
   setupWatcher() {
-    assert(
-      `'${this.element}' is already being watched. Make sure that '{{in-viewport}}' is only used once on this element and that you are not calling 'inViewport.watchElement(element)' in other places.`,
-      !WATCHED_ELEMENTS.has(this.element)
-    );
-    if (DEBUG) WATCHED_ELEMENTS.add(this.element);
+    // assert(
+    //   `'${this.element}' is already being watched. Make sure that '{{in-viewport}}' is only used once on this element and that you are not calling 'inViewport.watchElement(element)' in other places.`,
+    //   !WATCHED_ELEMENTS.has(this.element)
+    // );
+    // if (DEBUG) WATCHED_ELEMENTS.add(this.element);
     this.inViewport.watchElement(
       this.element,
       this.options,
@@ -66,7 +66,7 @@ export default class InViewportModifier extends Modifier {
   }
 
   destroyWatcher() {
-    if (DEBUG) WATCHED_ELEMENTS.delete(this.element);
+    // if (DEBUG) WATCHED_ELEMENTS.delete(this.element);
     this.inViewport.stopWatching(this.element);
   }
 
